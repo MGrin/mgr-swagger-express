@@ -1,6 +1,6 @@
 {
   "name": "mgr-swagger-express",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Swagger annotations for your express project",
   "license": "MIT",
   "author": "MGrin mr6r1n@gmail.com",
@@ -28,8 +28,8 @@
   },
   "scripts": {
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
-    "prepare": "npm build",
-    "prebuild": "npm lint && rm -rf dist",
+    "prepare": "npm run build",
+    "prebuild": "npm run lint && rm -rf dist",
     "build": "tsc"
   }
 }
