@@ -1,11 +1,11 @@
 {
   "name": "mgr-swagger-express",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Swagger annotations for your express project",
   "license": "MIT",
   "author": "MGrin mr6r1n@gmail.com",
   "main": "dist/index.js",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
