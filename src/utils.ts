@@ -4,7 +4,7 @@ import {
   SwaggerBodyParameter,
   SwaggerQueryParameter,
   SwaggerQueryField,
-} from './types'
+} from '.'
 
 export const extractContextFromToken = (token: string): Context => {
   const splitted = token.split(';')
