@@ -1,6 +1,6 @@
 {
   "name": "mgr-swagger-express",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Swagger annotations for your express project",
   "license": "MIT",
   "author": "MGrin mr6r1n@gmail.com",
