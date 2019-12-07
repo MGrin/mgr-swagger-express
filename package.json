@@ -13,6 +13,7 @@
     "type": "git",
     "utl": "https://github.com/MGrin/mgr-swagger-express"
   },
+  "publishConfig": { "registry": "https://registry.npmjs.org/" },
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/node": "^12.6.8",
@@ -27,8 +28,8 @@
   },
   "scripts": {
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
-    "prepare": "yarn build",
-    "prebuild": "yarn lint && rm -rf dist",
+    "prepare": "npm build",
+    "prebuild": "npm lint && rm -rf dist",
     "build": "tsc"
   }
 }
