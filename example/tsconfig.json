@@ -8,14 +8,15 @@
     "outDir": "./dist",
     "target": "es5",
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "esModuleInterop": true
   },
   "typedocOptions": {
     "module": "modules",
     "out": "docs",
   },
   "include": [
-    "src/**/*",
+    "*.ts",
   ],
   "exclude": [
     "node_modules",

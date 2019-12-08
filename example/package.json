@@ -1,0 +1,29 @@
+{
+  "name": "mgr-swagger-express-example",
+  "version": "0.0.6",
+  "description": "Swagger annotations for your express project",
+  "license": "MIT",
+  "author": "MGrin mr6r1n@gmail.com",
+  "repository": {
+    "type": "git",
+    "utl": "https://github.com/MGrin/mgr-swagger-express"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "@types/node": "^12.6.8",
+    "@types/swagger-ui-express": "^3.0.1",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-client": "^3.9.0",
+    "swagger-ui-express": "^4.0.7",
+    "mgr-swagger-express": "0.0.6"
+  },
+  "scripts": {
+    "lint": "tslint  --project tsconfig.json -t codeFrame '**/*.ts'",
+    "dev": "ts-node-dev index.ts"
+  }
+}

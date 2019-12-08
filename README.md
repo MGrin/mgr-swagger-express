@@ -1,5 +1,6 @@
 # mgr-swagger-express
 Swagger annotations for your express project
+[Medium article](https://medium.com/@mgrin/document-your-express-api-with-swagger-annotations-b530db6365d0)
 
 # Usage
 
