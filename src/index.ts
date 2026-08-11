@@ -55,7 +55,7 @@ const addSwaggerEndpoint = (config: SwaggerEndpoint, method: string) => {
   return (target: any, propertyKey: string):
     TypedPropertyDescriptor<(args: object, context: Context) => Promise<any>> => {
     const handler = target[propertyKey]
-    const expressPath = config.path.replace(/{([a-zA-Z]+)}/g, ':$1')
+    const expressPath = config.path.replace(/{([a-zA-Z_][a-zA-Z0-9_]*)}/g, ':$1')
 
     app[method.toLowerCase()](expressPath, async (req: any, res: any) => {
       let args = {}

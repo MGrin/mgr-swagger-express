@@ -34,7 +34,7 @@ export default class BookService {
     tags: ['Books'],
     success: '#/definitions/Book',
   })
-  public async getBooks(args, context) {
+  public async getBooks(args: any, context: any) {
     return Object.keys(BOOKS_STORE).map((bookId: string) => BOOKS_STORE[bookId])
   }
 
@@ -53,7 +53,7 @@ export default class BookService {
       }
     }
   })
-  public async createNewBook({ book }: { book: Book }, context) {
+  public async createNewBook({ book }: { book: Book }, context: any) {
     if (!book) {
       throw {
         status: 500,
@@ -66,7 +66,7 @@ export default class BookService {
   }
 
   @GET({
-    path: '/books/:book_id',
+    path: '/books/{book_id}',
     description: 'Get one book',
     parameters: [{
       name: 'book_id',
@@ -75,7 +75,7 @@ export default class BookService {
     tags: ['Books'],
     success: '#/definitions/Book',
   })
-  public async getBookById({ book_id }: { book_id: string }, context) {
+  public async getBookById({ book_id }: { book_id: string }, context: any) {
     const book = BOOKS_STORE[book_id]
     if (!book) {
       throw {
@@ -88,8 +88,12 @@ export default class BookService {
   }
 
   @PUT({
-    path: '/books/:book_id',
+    path: '/books/{book_id}',
     description: 'Update a book',
+    parameters: [{
+      name: 'book_id',
+      description: 'Book id',
+    }],
     tags: ['Books'],
     success: '#/definitions/Book',
     body: {
@@ -102,7 +106,7 @@ export default class BookService {
       }
     }
   })
-  public async updateBook({ book_id, update }: { book_id: string, update: Book }, context) {
+  public async updateBook({ book_id, update }: { book_id: string, update: Book }, context: any) {
     const book = BOOKS_STORE[book_id]
     if (!book) {
       throw {
@@ -116,11 +120,15 @@ export default class BookService {
   }
 
   @DELETE({
-    path: '/books/:book_id',
+    path: '/books/{book_id}',
     description: 'Delete a book',
+    parameters: [{
+      name: 'book_id',
+      description: 'Book id',
+    }],
     tags: ['Books'],
   })
-  public async deleteBook({ book_id }: { book_id: string }, context) {
+  public async deleteBook({ book_id }: { book_id: string }, context: any) {
     const book = BOOKS_STORE[book_id]
     if (book) {
       delete BOOKS_STORE[book_id]
