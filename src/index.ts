@@ -28,18 +28,17 @@ const addSwaggerEndpoint = (config: SwaggerEndpoint, method: string) => {
     },
   } : undefined
 
-  let parameters: SwaggerParameter[] = []
-  if (config.auth) {
-    parameters.push({
-      name: config.auth,
-      description: 'User JWT token',
-      required: true,
-      type: 'string',
-      in: 'header',
-      example: 'user_id;organization_id;READER,WRITER',
-    })
-  }
-  parameters  = [
+  const authParameters: SwaggerParameter[] = config.auth ? [{
+    name: config.auth,
+    description: 'User JWT token',
+    required: true,
+    type: 'string',
+    in: 'header',
+    example: 'user_id;organization_id;READER,WRITER',
+  }] : []
+
+  const parameters: SwaggerParameter[] = [
+    ...authParameters,
     ...transformURLParameters2Swagger(config.parameters),
     ...transformBody2Swagger(config.body),
     ...transformQuery2Swagger(config.query),
@@ -80,11 +79,11 @@ const addSwaggerEndpoint = (config: SwaggerEndpoint, method: string) => {
         }
       }
 
-      const context = config.auth ? extractContextFromToken(req.header('x-auth')) : null
-      // tslint:disable-next-line: no-console
-      console.log(`${propertyKey} [${method.toUpperCase()} ${expressPath}]`, args, context)
-
       try {
+        const context = config.auth ? extractContextFromToken(req.header(config.auth)) : null
+        // tslint:disable-next-line: no-console
+        console.log(`${propertyKey} [${method.toUpperCase()} ${expressPath}]`, args, context)
+
         const result = await Promise.resolve(handler(args, context))
         if (method.toUpperCase() === 'GET' && (result === null || result === undefined)) {
           return res.status(404).send()

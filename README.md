@@ -94,3 +94,29 @@ export default class BotService {
   }
 }
 ```
+
+## Authentication
+
+Set `auth` to the name of the header carrying the token. The header is documented as a
+required parameter on that operation, and its value is parsed into the `context` argument
+your handler receives:
+
+```typescript
+  @GET({
+    path: '/resource',
+    description: 'Get all resources available',
+    auth: 'x-auth',
+    tags: ['Resources'],
+  })
+  public async getAvailableResources(args, context) {
+    // context is { author, organization, roles }
+    return []
+  }
+```
+
+The token format is `author;organization;roles`, where roles is a comma separated list —
+for example `user_id;organization_id;READER,WRITER`.
+
+Requests that omit the header, or send a token with fewer than three segments, are
+rejected with `401` before your handler runs. Endpoints without `auth` receive `null` as
+their context.

@@ -6,8 +6,21 @@ import {
   SwaggerQueryField,
 } from '.'
 
-export const extractContextFromToken = (token: string): Context => {
+export const extractContextFromToken = (token?: string): Context => {
+  if (!token) {
+    throw {
+      status: 401,
+      message: 'Authentication token is missing',
+    }
+  }
+
   const splitted = token.split(';')
+  if (splitted.length < 3) {
+    throw {
+      status: 401,
+      message: 'Authentication token is malformed, expected author;organization;roles',
+    }
+  }
 
   return {
     author: splitted[0],
